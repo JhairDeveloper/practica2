@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<listaEnlazada>
+    <cabecera>
+        <auto>
+            <color>Rojo</color>
+            <marca>Toyota</marca>
+            <modelo>Hilux CS</modelo>
+        </auto>
+        <siguiente>
+            <auto>
+                <color>Plateado</color>
+                <marca>Hiunday</marca>
+                <modelo>Tucson</modelo>
+            </auto>
+            <siguiente>
+                <auto>
+                    <color>Negro</color>
+                    <marca>Toyota</marca>
+                    <modelo>Corolla</modelo>
+                </auto>
+                <siguiente>
+                    <auto>
+                        <anioFabricacion>2005</anioFabricacion>
+                        <color>Plomo</color>
+                        <marca>Hyunday</marca>
+                        <modelo>Gran vitara</modelo>
+                    </auto>
+                </siguiente>
+            </siguiente>
+        </siguiente>
+    </cabecera>
+    <size>4</size>
+</listaEnlazada>

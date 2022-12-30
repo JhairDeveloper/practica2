@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<listaEnlazada>
+    <cabecera>
+        <gato>
+            <nombre>Mishipus</nombre>
+            <raza>Ciberiano</raza>
+        </gato>
+        <siguiente>
+            <gato>
+                <nombre>Leonor</nombre>
+                <raza>Eciatoriano</raza>
+            </gato>
+            <siguiente>
+                <gato>
+                    <nombre>Lucy</nombre>
+                    <raza>Escosez</raza>
+                </gato>
+                <siguiente>
+                    <gato>
+                        <nombre>Matilde</nombre>
+                        <raza>Asiatico</raza>
+                    </gato>
+                    <siguiente>
+                        <gato>
+                            <nombre>Peluche</nombre>
+                            <raza>Bengali</raza>
+                        </gato>
+                        <siguiente>
+                            <gato>
+<nombre>Nieve</nombre>
+<raza>Americano</raza>
+                            </gato>
+                            <siguiente>
+<gato>
+    <edad>5.0</edad>
+    <id>6</id>
+    <nombre>Nieve</nombre>
+    <raza>Americano</raza>
+</gato>
+                            </siguiente>
+                        </siguiente>
+                    </siguiente>
+                </siguiente>
+            </siguiente>
+        </siguiente>
+    </cabecera>
+    <size>7</size>
+</listaEnlazada>

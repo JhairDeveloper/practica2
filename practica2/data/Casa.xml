@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<listaEnlazada>
+    <cabecera>
+        <casa>
+            <color>Naranja</color>
+            <nombre>Mateo house</nombre>
+            <ubicacion>Malacatos</ubicacion>
+        </casa>
+        <siguiente>
+            <casa>
+                <color>Naranja</color>
+                <nombre>Ana house</nombre>
+                <ubicacion>Quito</ubicacion>
+            </casa>
+            <siguiente>
+                <casa>
+                    <color>Naranja</color>
+                    <nombre>Brayan house</nombre>
+                    <ubicacion>Loja</ubicacion>
+                </casa>
+                <siguiente>
+                    <casa>
+                        <color>Naranja</color>
+                        <nombre>Thalia house</nombre>
+                        <numPisos>1</numPisos>
+                        <precio>40.0</precio>
+                        <tamanio>20.0</tamanio>
+                        <ubicacion>Chaguarpamba</ubicacion>
+                    </casa>
+                </siguiente>
+            </siguiente>
+        </siguiente>
+    </cabecera>
+    <size>4</size>
+</listaEnlazada>
