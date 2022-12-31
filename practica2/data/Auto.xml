@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <listaEnlazada>
+    <ascendenteShell>0</ascendenteShell>
+    <descendenteShell>0</descendenteShell>
     <cabecera>
         <auto>
             <color>Rojo</color>
@@ -20,14 +22,55 @@
                 </auto>
                 <siguiente>
                     <auto>
-                        <anioFabricacion>2005</anioFabricacion>
                         <color>Plomo</color>
                         <marca>Hyunday</marca>
                         <modelo>Gran vitara</modelo>
                     </auto>
+                    <siguiente>
+                        <auto>
+                            <color>Rojo</color>
+                            <marca>Chevrolet</marca>
+                            <modelo>A1</modelo>
+                        </auto>
+                        <siguiente>
+                            <auto>
+<color>Griss</color>
+<marca>Toyota</marca>
+<modelo>A2</modelo>
+                            </auto>
+                            <siguiente>
+<auto>
+    <color>Azul</color>
+    <marca>Toyota</marca>
+    <modelo>A3</modelo>
+</auto>
+<siguiente>
+    <auto>
+        <color>Verde</color>
+        <marca>Toyota</marca>
+        <modelo>A4</modelo>
+    </auto>
+    <siguiente>
+        <auto>
+            <color>Griss</color>
+            <marca>Toyota</marca>
+            <modelo>A5</modelo>
+        </auto>
+        <siguiente>
+            <auto>
+                <color>Naranja</color>
+                <marca>Toyota</marca>
+                <modelo>A6</modelo>
+            </auto>
+        </siguiente>
+    </siguiente>
+</siguiente>
+                            </siguiente>
+                        </siguiente>
+                    </siguiente>
                 </siguiente>
             </siguiente>
         </siguiente>
     </cabecera>
-    <size>4</size>
+    <size>10</size>
 </listaEnlazada>

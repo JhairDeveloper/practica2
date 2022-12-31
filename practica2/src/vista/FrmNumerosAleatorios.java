@@ -5,6 +5,7 @@
 package vista;
 
 import controlador.listas.ListaEnlazada;
+import java.util.Random;
 import vistas.Tabla.ModeloTablaNumero;
 
 /**
@@ -83,11 +84,11 @@ public class FrmNumerosAleatorios extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel3.setText("Ordenar");
+        jLabel3.setText("Ordenar : ");
 
         cbxTipoOrdenamiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NONE", "ASCENDENTE", "DESCENDENTE" }));
 
-        jLabel4.setText("Metodo");
+        jLabel4.setText("Metodo :");
 
         cbxMetodoOrdenamiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NONE", "SHELL", "QUICKSORT" }));
         cbxMetodoOrdenamiento.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +97,7 @@ public class FrmNumerosAleatorios extends javax.swing.JDialog {
             }
         });
 
-        jLabel6.setText("Nombre a buscar: ");
+        jLabel6.setText("Nombre a buscar : ");
 
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +107,7 @@ public class FrmNumerosAleatorios extends javax.swing.JDialog {
 
         jLabel7.setText("Metodo Busqueda : ");
 
-        cbxMetodoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NONE", "SECUENCIAL", "LINEAL BINARIA" }));
+        cbxMetodoBusqueda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NONE", "SECUENCIAL", "BINARIA" }));
         cbxMetodoBusqueda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxMetodoBusquedaActionPerformed(evt);
@@ -137,14 +138,17 @@ public class FrmNumerosAleatorios extends javax.swing.JDialog {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel4)
-                                            .addGap(34, 34, 34)
-                                            .addComponent(cbxMetodoOrdenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(18, 18, 18)
+                                            .addComponent(cbxMetodoOrdenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(16, 16, 16))
                                         .addComponent(jLabel1)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(315, 315, 315)
                                     .addComponent(jLabel3)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(cbxMetodoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cbxMetodoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2)
                                 .addGap(28, 28, 28)))
@@ -160,10 +164,7 @@ public class FrmNumerosAleatorios extends javax.swing.JDialog {
                                 .addGap(11, 11, 11)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -200,7 +201,7 @@ public class FrmNumerosAleatorios extends javax.swing.JDialog {
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addGap(50, 50, 50))
         );
 
         pack();
@@ -210,8 +211,8 @@ public class FrmNumerosAleatorios extends javax.swing.JDialog {
         for (int i = 0; i < 20000; i++) {
             lista.insertar((float) (Math.random() * 10 + 1));
         }
+        
         cargarTabla();
-
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -269,12 +270,14 @@ public class FrmNumerosAleatorios extends javax.swing.JDialog {
         }
         try {
             Integer metodoOrdenacion = cbxMetodoOrdenamiento.getSelectedIndex();
+            if(metodoOrdenacion == 0){
+                mtn.setLista(lista);
+            }
             if (metodoOrdenacion == 1) {
                 mtn.setLista(lista.ordenamientoShell(null, tipoOrdenacion));
             }
             if (metodoOrdenacion == 2) {
                 mtn.setLista(lista.ordenamientoQuickSort(null, tipoOrdenacion));
-                lista.imprimir();
             }
             jTable1.setModel(mtn);
             jTable1.updateUI();

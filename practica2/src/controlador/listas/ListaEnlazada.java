@@ -26,24 +26,28 @@ public class ListaEnlazada<E> {
     private Integer size;
     public static Integer ASCENDENTE = 1;
     public static Integer DESCENDENTE = 2;
+    public long ascendenteShell;
+    public long descendenteShell;
 
     public ListaEnlazada() {
         cabecera = null;
         size = 0;
+        ascendenteShell = (long) 0.00;
+        descendenteShell = (long) 0.00;
     }
 
     public ListaEnlazada busquedaLinealBinaria(String campo, String dato) throws Exception {
         ListaEnlazada<E> resultado = new ListaEnlazada<>();
+        long finEjecucion = (long) 0.00;
+        long inicioEjecucion = System.nanoTime();
         if (size > 0) {
-            System.out.println("dentro de size");
             E[] arreglo = toArray();
             Class<E> clazz = (Class<E>) cabecera.getDato().getClass();
-            System.out.println("despes de clazz");
             boolean isObject = Utilidades.isObject(clazz);
             Integer inicio = 0;
             Integer fin = arreglo.length - 1;
             Integer posicion = 0;
-            Float numeroBuscado = (float) Float.parseFloat(dato);
+            Float numeroBuscado = null;
             Field field = null;
             Object valor = null;
             if (campo != null) {
@@ -53,16 +57,19 @@ public class ListaEnlazada<E> {
                     throw new AtributoException();
                 }
                 field.setAccessible(true);
+            } else {
+                numeroBuscado = (float) Float.parseFloat(dato);
+                System.out.println(numeroBuscado);
             }
             while (inicio <= fin) {
                 posicion = (inicio + fin) / 2;
                 if (isObject) {
 
-                    System.out.println("IS an object");
-
                     valor = field.get(arreglo[posicion]);
                     if (valor.equals(dato)) {
                         resultado.insertar(arreglo[posicion]);
+                        finEjecucion = System.nanoTime();
+                        System.out.println("Tiempo de ejecicion en busqueda binaria " + (finEjecucion - inicioEjecucion));
                         return resultado;
                     } else if ((arreglo[posicion]).toString().compareTo(dato) < 0) {
                         inicio = posicion + 1;
@@ -70,24 +77,31 @@ public class ListaEnlazada<E> {
                         fin = posicion - 1;
                     }
                 } else {
-                    System.out.println("IS an primitivo");
-                    Float numeroArreglo = (float) arreglo[posicion];
-                    if (Objects.equals(numeroBuscado, numeroArreglo)) {
+                    System.out.println("arreglo " + arreglo[posicion]);
+                    if (((Number)arreglo[posicion]).floatValue() == numeroBuscado) {
+                        System.out.println("Dentro de igual");
+                        finEjecucion = System.nanoTime();
                         resultado.insertar(arreglo[posicion]);
+                        System.out.println("Tiempo de ejecicion en busqueda binaria " + (finEjecucion - inicioEjecucion));
                         return resultado;
-                    } else if (numeroArreglo < numeroBuscado) {
+                    } else if (((Number)arreglo[posicion]).floatValue() < numeroBuscado) {
+                        System.out.println("numeroArreglo < numeroBuscado");
                         inicio = posicion + 1;
                     } else {
+                        System.out.println("else");
                         fin = posicion - 1;
                     }
                 }
             }
         }
+        finEjecucion = System.nanoTime();
+        System.out.println("Tiempo de ejecicion en busqueda binaria " + (finEjecucion - inicioEjecucion));
         return resultado;
     }
 
     public ListaEnlazada busquedaSecuencial(String campo, String dato) throws Exception {
         Object a;
+        long inicioEjecucion = System.nanoTime();
         ListaEnlazada<E> resultado = new ListaEnlazada<>();
         if (size > 0) {
             E[] arreglo = toArray();
@@ -101,7 +115,7 @@ public class ListaEnlazada<E> {
                 field.setAccessible(true);
                 int i = 0;
                 boolean band = false;
-                while (i < arreglo.length && band == false) {
+                while (i < arreglo.length) {
                     a = field.get(arreglo[i]);
                     if (a.equals(dato)) {
                         resultado.insertar(arreglo[i]);
@@ -115,7 +129,7 @@ public class ListaEnlazada<E> {
             } else {
                 int i = 0;
                 boolean band = false;
-                while (i < arreglo.length && band == false) {
+                while (i < arreglo.length) {
                     Float x = (float) arreglo[i];
                     Float y = Float.parseFloat(dato);
                     if (Objects.equals(x, y)) {
@@ -131,6 +145,9 @@ public class ListaEnlazada<E> {
             }
 
         }
+        long finEjecucion = System.nanoTime();
+        System.out.println("Tiempo de ejecicion en busqueda secuencial " + (finEjecucion - inicioEjecucion));
+
         return resultado;
     }
 
@@ -148,7 +165,7 @@ public class ListaEnlazada<E> {
             }
         }
         long finEjecucion = System.nanoTime();
-        System.out.println("Tiempo de ejecicion en quickSort es: " + (finEjecucion - inicioEjecucion));
+        System.out.println("Timpo de ejecucion del algoritmo shell es: " + (finEjecucion - inicioEjecucion));
         return this;
     }
 
@@ -166,7 +183,6 @@ public class ListaEnlazada<E> {
         j = posicionFinal;
         pivote = arreglo[posicionInicial + posicionFinal / 2];
         Boolean bandera = true;
-
         do {
             bandera = false;
             Integer[] indices = intercambioQuickSort(i, j, arreglo, field, pivote, tipoOrdenacion);
@@ -187,9 +203,9 @@ public class ListaEnlazada<E> {
         }
         if (i < posicionFinal) {
             if (tipoOrdenacion == DESCENDENTE) {
-                ordenarQuickNoPrimitivo(arreglo, atributo, clazz, i, posicionFinal, tipoOrdenacion);
+                ordenarQuickNoPrimitivo(arreglo, atributo, clazz, i - 1, posicionFinal, tipoOrdenacion);
             } else {
-                ordenarQuickNoPrimitivo(arreglo, atributo, clazz, i, posicionFinal, tipoOrdenacion);
+                ordenarQuickNoPrimitivo(arreglo, atributo, clazz, i - 1, posicionFinal, tipoOrdenacion);
             }
         }
         if (arreglo != null) {
@@ -230,8 +246,7 @@ public class ListaEnlazada<E> {
                         }
                     }
                 }
-
-                if (posicionInicial != posicionFinal) {
+                if (posicionInicial != posicionFinal ) {
                     auxiliar = arreglo[posicionFinal];
                     arreglo[posicionFinal] = arreglo[posicionInicial];
                     arreglo[posicionInicial] = auxiliar;
@@ -240,7 +255,6 @@ public class ListaEnlazada<E> {
                     ordenarQuickPrimitivo(arreglo, i, posicionInicial - 1, tipoOrdenacion);
                     ordenarQuickPrimitivo(arreglo, posicionInicial + 1, j, tipoOrdenacion);
                 }
-
             }
         } else {
             toList(arreglo);
@@ -360,6 +374,11 @@ public class ListaEnlazada<E> {
             }
         }
         long finEjecucion = System.nanoTime();
+        if (ascendenteShell == 0.00) {
+            ascendenteShell = finEjecucion - inicioEjecucion;
+        } else {
+            descendenteShell = finEjecucion - inicioEjecucion;
+        }
         System.out.println("Tiempo de ejecicion en shell " + (finEjecucion - inicioEjecucion));
         return this;
     }

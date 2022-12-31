@@ -8,7 +8,6 @@ package controlador.utiles;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
 import java.security.InvalidKeyException;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Base64;
@@ -150,16 +149,7 @@ public class Utilidades {
 
     public static void main(String[] args) {
 
-//        try {
-//            String claveSecreta = "XABC345";
-//            String dato = "IShowSpeed";
-//            System.out.println(Utilidades.encriptarClave(dato, claveSecreta));
-//            System.out.println(Utilidades.desencriptarClave("rWw5G4J6Iz9tllr1vOvUdQ==", "XABC345"));
-//            //77+9Tu+/ve+/vQkHJu+/vTTvv71W77+9byk=
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            e.printStackTrace();
-//        }
+        
         String aux = "9999999999001";
         String ced = aux.substring(0, 10);
         String baj = aux.substring(10, 13);
